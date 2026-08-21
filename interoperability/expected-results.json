@@ -1,0 +1,15 @@
+[
+  {"name": "valid-answer", "valid": true, "errors": [], "warnings": []},
+  {"name": "valid-clarify", "valid": true, "errors": [], "warnings": []},
+  {"name": "valid-retrieve", "valid": true, "errors": [], "warnings": []},
+  {"name": "valid-tool", "valid": true, "errors": [], "warnings": []},
+  {"name": "valid-deliberate", "valid": true, "errors": [], "warnings": []},
+  {"name": "valid-abstain", "valid": true, "errors": [], "warnings": []},
+  {"name": "valid-escalate", "valid": true, "errors": [], "warnings": []},
+  {"name": "invalid-answer-null-confidence", "valid": false, "errors": ["post_answer_confidence must be non-null for ANSWER"], "warnings": []},
+  {"name": "invalid-answer-confidence-target", "valid": false, "errors": ["confidence_target must be \"answer\" for ANSWER"], "warnings": []},
+  {"name": "invalid-primary-source-none", "valid": false, "errors": ["primary_source must be one of ambiguity, missing_evidence, capability_limit, evidence_conflict, safety"], "warnings": []},
+  {"name": "invalid-uncertainty-score", "valid": false, "errors": ["uncertainty.missing_evidence must be between 0.0 and 1.0"], "warnings": []},
+  {"name": "invalid-enumeration", "valid": false, "errors": ["selected_action must be one of ANSWER, CLARIFY, RETRIEVE, TOOL, DELIBERATE, ABSTAIN, ESCALATE"], "warnings": []},
+  {"name": "valid-clarify-remediability-warning", "valid": true, "errors": [], "warnings": ["remediability should be \"user_clarification\" for CLARIFY"]}
+]

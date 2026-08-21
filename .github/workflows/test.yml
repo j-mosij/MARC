@@ -1,0 +1,61 @@
+name: test
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install Python dependencies
+        run: python -m pip install -e ".[dev]"
+
+      - name: Install TypeScript dependencies
+        run: npm ci
+
+      - name: Validate both JSON Schemas
+        run: |
+          python -m pytest tests/test_schemas.py
+          npm run test:schemas
+
+      - name: Validate positive and negative examples
+        run: python -m pytest tests/test_valid_examples.py tests/test_invalid_examples.py
+
+      - name: Run Python tests
+        run: python -m pytest
+
+      - name: Build and test TypeScript
+        run: |
+          npm run build
+          npm run test:typescript
+
+      - name: Run common vectors and require cross-language agreement
+        run: |
+          python -m pytest tests/test_interoperability.py
+          npm run test:interop
+
+      - name: Run integration examples
+        run: |
+          python integrations/generic-agent/example.py
+          python integrations/rag-controller/example.py
+          python integrations/gateway/example.py

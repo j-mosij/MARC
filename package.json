@@ -1,0 +1,24 @@
+{
+  "name": "marc-reference-implementation",
+  "version": "0.2.0",
+  "private": true,
+  "description": "TypeScript reference implementation and interoperability tests for draft-c4tz-marc-02",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "test:typescript": "vitest run typescript/tests/validator.test.ts typescript/tests/disclosure.test.ts",
+    "test:schemas": "vitest run typescript/tests/schemas.test.ts",
+    "test:interop": "vitest run typescript/tests/interoperability.test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "ajv": "^8.17.1",
+    "typescript": "^5.7.2",
+    "vitest": "^4.1.11"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

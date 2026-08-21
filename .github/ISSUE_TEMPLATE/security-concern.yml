@@ -1,0 +1,26 @@
+name: Security concern
+description: Discuss non-sensitive threat-model or hardening concerns only.
+title: "[Security] "
+labels: ["security"]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not disclose a vulnerability here. Use GitHub private vulnerability reporting as described in SECURITY.md."
+  - type: checkboxes
+    id: non_sensitive
+    attributes:
+      label: Public discussion check
+      options:
+        - label: This report contains no vulnerability details, secrets, credentials, or private user data.
+          required: true
+  - type: textarea
+    id: concern
+    attributes:
+      label: Security design concern
+      description: Describe the non-sensitive threat-model or hardening topic.
+    validations:
+      required: true
+  - type: textarea
+    id: recommendation
+    attributes:
+      label: Suggested documentation or hardening change

@@ -1,0 +1,308 @@
+[
+  {
+    "name": "valid-answer",
+    "record": {
+      "marc_version": "1.0",
+      "pre_capability": 0.86,
+      "uncertainty": {
+        "ambiguity": 0.05,
+        "missing_evidence": 0.12,
+        "capability_limit": 0.08,
+        "evidence_conflict": 0.02,
+        "safety": 0.0
+      },
+      "primary_source": "missing_evidence",
+      "remediability": "none",
+      "selected_action": "ANSWER",
+      "post_answer_confidence": 0.88,
+      "confidence_band": "high",
+      "confidence_target": "answer",
+      "recommended_next_step": "review the cited sources"
+    },
+    "expected_valid": true,
+    "expected_errors": [],
+    "expected_warnings": []
+  },
+  {
+    "name": "valid-clarify",
+    "record": {
+      "marc_version": "1.0",
+      "pre_capability": 0.42,
+      "uncertainty": {
+        "ambiguity": 0.91,
+        "missing_evidence": 0.2,
+        "capability_limit": 0.1,
+        "evidence_conflict": 0.0,
+        "safety": 0.0
+      },
+      "primary_source": "ambiguity",
+      "remediability": "user_clarification",
+      "selected_action": "CLARIFY",
+      "post_answer_confidence": null,
+      "confidence_band": "low",
+      "confidence_target": "direct_answer_suitability",
+      "recommended_next_step": "ask for the jurisdiction and date range"
+    },
+    "expected_valid": true,
+    "expected_errors": [],
+    "expected_warnings": []
+  },
+  {
+    "name": "valid-retrieve",
+    "record": {
+      "marc_version": "1.0",
+      "pre_capability": 0.48,
+      "uncertainty": {
+        "ambiguity": 0.08,
+        "missing_evidence": 0.89,
+        "capability_limit": 0.12,
+        "evidence_conflict": 0.18,
+        "safety": 0.0
+      },
+      "primary_source": "missing_evidence",
+      "remediability": "retrieval",
+      "selected_action": "RETRIEVE",
+      "confidence_band": "low",
+      "confidence_target": "direct_answer_suitability",
+      "recommended_next_step": "retrieve current authoritative evidence"
+    },
+    "expected_valid": true,
+    "expected_errors": [],
+    "expected_warnings": []
+  },
+  {
+    "name": "valid-tool",
+    "record": {
+      "marc_version": "1.0",
+      "pre_capability": 0.55,
+      "uncertainty": {
+        "ambiguity": 0.04,
+        "missing_evidence": 0.25,
+        "capability_limit": 0.82,
+        "evidence_conflict": 0.02,
+        "safety": 0.0
+      },
+      "primary_source": "capability_limit",
+      "remediability": "tool",
+      "selected_action": "TOOL",
+      "confidence_band": "high",
+      "confidence_target": "action_suitability",
+      "recommended_next_step": "invoke the calculation tool and reassess"
+    },
+    "expected_valid": true,
+    "expected_errors": [],
+    "expected_warnings": []
+  },
+  {
+    "name": "valid-deliberate",
+    "record": {
+      "marc_version": "1.0",
+      "iteration": 1,
+      "max_iterations": 3,
+      "pre_capability": 0.67,
+      "uncertainty": {
+        "ambiguity": 0.19,
+        "missing_evidence": 0.14,
+        "capability_limit": 0.33,
+        "evidence_conflict": 0.72,
+        "safety": 0.0
+      },
+      "primary_source": "evidence_conflict",
+      "remediability": "none",
+      "selected_action": "DELIBERATE",
+      "confidence_band": "medium",
+      "confidence_target": "action_suitability",
+      "recommended_next_step": "compare the conflicting evidence once more"
+    },
+    "expected_valid": true,
+    "expected_errors": [],
+    "expected_warnings": []
+  },
+  {
+    "name": "valid-abstain",
+    "record": {
+      "marc_version": "1.0",
+      "pre_capability": 0.18,
+      "uncertainty": {
+        "ambiguity": 0.05,
+        "missing_evidence": 0.45,
+        "capability_limit": 0.95,
+        "evidence_conflict": 0.11,
+        "safety": 0.2
+      },
+      "primary_source": "capability_limit",
+      "remediability": "none",
+      "selected_action": "ABSTAIN",
+      "confidence_band": "low",
+      "confidence_target": "direct_answer_suitability",
+      "recommended_next_step": "do not rely on a direct answer"
+    },
+    "expected_valid": true,
+    "expected_errors": [],
+    "expected_warnings": []
+  },
+  {
+    "name": "valid-escalate",
+    "record": {
+      "marc_version": "1.0",
+      "pre_capability": 0.31,
+      "uncertainty": {
+        "ambiguity": 0.12,
+        "missing_evidence": 0.41,
+        "capability_limit": 0.58,
+        "evidence_conflict": 0.28,
+        "safety": 0.93
+      },
+      "primary_source": "safety",
+      "remediability": "human",
+      "selected_action": "ESCALATE",
+      "confidence_band": "high",
+      "confidence_target": "action_suitability",
+      "recommended_next_step": "transfer the case to an authorized reviewer"
+    },
+    "expected_valid": true,
+    "expected_errors": [],
+    "expected_warnings": []
+  },
+  {
+    "name": "invalid-answer-null-confidence",
+    "record": {
+      "marc_version": "1.0",
+      "pre_capability": 0.84,
+      "uncertainty": {
+        "ambiguity": 0.05,
+        "missing_evidence": 0.1,
+        "capability_limit": 0.08,
+        "evidence_conflict": 0.02,
+        "safety": 0.0
+      },
+      "primary_source": "missing_evidence",
+      "remediability": "none",
+      "selected_action": "ANSWER",
+      "post_answer_confidence": null,
+      "confidence_band": "high",
+      "confidence_target": "answer",
+      "recommended_next_step": "review the answer"
+    },
+    "expected_valid": false,
+    "expected_errors": ["post_answer_confidence must be non-null for ANSWER"],
+    "expected_warnings": []
+  },
+  {
+    "name": "invalid-answer-confidence-target",
+    "record": {
+      "marc_version": "1.0",
+      "pre_capability": 0.84,
+      "uncertainty": {
+        "ambiguity": 0.05,
+        "missing_evidence": 0.1,
+        "capability_limit": 0.08,
+        "evidence_conflict": 0.02,
+        "safety": 0.0
+      },
+      "primary_source": "missing_evidence",
+      "remediability": "none",
+      "selected_action": "ANSWER",
+      "post_answer_confidence": 0.86,
+      "confidence_band": "high",
+      "confidence_target": "action_suitability",
+      "recommended_next_step": "review the answer"
+    },
+    "expected_valid": false,
+    "expected_errors": ["confidence_target must be \"answer\" for ANSWER"],
+    "expected_warnings": []
+  },
+  {
+    "name": "invalid-primary-source-none",
+    "record": {
+      "marc_version": "1.0",
+      "pre_capability": 0.76,
+      "uncertainty": {
+        "ambiguity": 0.02,
+        "missing_evidence": 0.08,
+        "capability_limit": 0.06,
+        "evidence_conflict": 0.01,
+        "safety": 0.0
+      },
+      "primary_source": "none",
+      "remediability": "none",
+      "selected_action": "ANSWER",
+      "post_answer_confidence": 0.81,
+      "confidence_band": "high",
+      "confidence_target": "answer",
+      "recommended_next_step": "review the answer"
+    },
+    "expected_valid": false,
+    "expected_errors": ["primary_source must be one of ambiguity, missing_evidence, capability_limit, evidence_conflict, safety"],
+    "expected_warnings": []
+  },
+  {
+    "name": "invalid-uncertainty-score",
+    "record": {
+      "marc_version": "1.0",
+      "pre_capability": 0.44,
+      "uncertainty": {
+        "ambiguity": 0.12,
+        "missing_evidence": 1.2,
+        "capability_limit": 0.22,
+        "evidence_conflict": 0.1,
+        "safety": 0.0
+      },
+      "primary_source": "missing_evidence",
+      "remediability": "retrieval",
+      "selected_action": "RETRIEVE",
+      "confidence_band": "low",
+      "confidence_target": "direct_answer_suitability",
+      "recommended_next_step": "retrieve current evidence"
+    },
+    "expected_valid": false,
+    "expected_errors": ["uncertainty.missing_evidence must be between 0.0 and 1.0"],
+    "expected_warnings": []
+  },
+  {
+    "name": "invalid-enumeration",
+    "record": {
+      "marc_version": "1.0",
+      "pre_capability": 0.7,
+      "uncertainty": {
+        "ambiguity": 0.1,
+        "missing_evidence": 0.1,
+        "capability_limit": 0.1,
+        "evidence_conflict": 0.1,
+        "safety": 0.0
+      },
+      "primary_source": "ambiguity",
+      "remediability": "none",
+      "selected_action": "GUESS",
+      "confidence_band": "medium",
+      "confidence_target": "direct_answer_suitability",
+      "recommended_next_step": "review the decision"
+    },
+    "expected_valid": false,
+    "expected_errors": ["selected_action must be one of ANSWER, CLARIFY, RETRIEVE, TOOL, DELIBERATE, ABSTAIN, ESCALATE"],
+    "expected_warnings": []
+  },
+  {
+    "name": "valid-clarify-remediability-warning",
+    "record": {
+      "marc_version": "1.0",
+      "pre_capability": 0.4,
+      "uncertainty": {
+        "ambiguity": 0.9,
+        "missing_evidence": 0.1,
+        "capability_limit": 0.1,
+        "evidence_conflict": 0.0,
+        "safety": 0.0
+      },
+      "primary_source": "ambiguity",
+      "remediability": "none",
+      "selected_action": "CLARIFY",
+      "confidence_band": "low",
+      "confidence_target": "direct_answer_suitability",
+      "recommended_next_step": "ask one clarifying question"
+    },
+    "expected_valid": true,
+    "expected_errors": [],
+    "expected_warnings": ["remediability should be \"user_clarification\" for CLARIFY"]
+  }
+]

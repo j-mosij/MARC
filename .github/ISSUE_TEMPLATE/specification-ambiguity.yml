@@ -1,0 +1,32 @@
+name: Specification ambiguity
+description: Document MARC semantics that appear ambiguous or mechanically unclear.
+title: "[Ambiguity] "
+labels: ["specification-ambiguity"]
+body:
+  - type: input
+    id: draft
+    attributes:
+      label: Draft revision and section
+      description: For example, draft-c4tz-marc-02, Section 9.4.
+    validations:
+      required: true
+  - type: textarea
+    id: ambiguity
+    attributes:
+      label: Ambiguous text or behavior
+      description: Paraphrase or quote only the minimal text needed for discussion.
+    validations:
+      required: true
+  - type: textarea
+    id: interpretations
+    attributes:
+      label: Plausible interpretations
+    validations:
+      required: true
+  - type: textarea
+    id: interoperability
+    attributes:
+      label: Interoperability impact
+      description: Explain how independent implementations could disagree.
+    validations:
+      required: true

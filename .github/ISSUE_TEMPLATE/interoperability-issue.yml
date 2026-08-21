@@ -1,0 +1,32 @@
+name: Interoperability issue
+description: Report a disagreement between MARC implementations or vectors.
+title: "[Interop] "
+labels: ["interoperability"]
+body:
+  - type: input
+    id: vector
+    attributes:
+      label: Vector or record
+      description: Identify the common vector or attach a minimal non-sensitive record.
+    validations:
+      required: true
+  - type: textarea
+    id: implementations
+    attributes:
+      label: Implementations compared
+      description: Include language, version, and revision for each implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: results
+    attributes:
+      label: Observed results
+      description: Include validity, errors, and warnings from each implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "marc-disclosure.schema.json",
+  "title": "MARC-Disclosure Object",
+  "description": "Non-normative JSON Schema validation aid for MARC-Disclosure 1.0 as specified by draft-c4tz-marc-02.",
+  "type": "object",
+  "required": [
+    "answer",
+    "confidence_band",
+    "confidence_target",
+    "uncertainty_source",
+    "recommended_next_step"
+  ],
+  "properties": {
+    "answer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "confidence_band": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "confidence_target": {
+      "type": "string",
+      "enum": ["answer", "direct_answer_suitability", "action_suitability"]
+    },
+    "uncertainty_source": {
+      "type": "string",
+      "enum": ["ambiguity", "missing_evidence", "capability_limit", "evidence_conflict", "safety"]
+    },
+    "recommended_next_step": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 280
+    },
+    "selected_action": {
+      "type": "string",
+      "enum": ["ANSWER", "CLARIFY", "RETRIEVE", "TOOL", "DELIBERATE", "ABSTAIN", "ESCALATE"]
+    }
+  },
+  "patternProperties": {
+    "^x_": {}
+  },
+  "additionalProperties": false
+}

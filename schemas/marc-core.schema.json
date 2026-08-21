@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "marc-core.schema.json",
+  "title": "MARC-Core Record",
+  "description": "Non-normative JSON Schema validation aid for MARC-Core 1.0 as specified by draft-c4tz-marc-02.",
+  "type": "object",
+  "required": [
+    "marc_version",
+    "pre_capability",
+    "uncertainty",
+    "primary_source",
+    "remediability",
+    "selected_action",
+    "confidence_band",
+    "confidence_target",
+    "recommended_next_step"
+  ],
+  "properties": {
+    "marc_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "decision_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "parent_decision_id": {
+      "type": ["string", "null"],
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "iteration": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "max_iterations": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "calibration_profile": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "pre_capability": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "uncertainty": {
+      "type": "object",
+      "required": [
+        "ambiguity",
+        "missing_evidence",
+        "capability_limit",
+        "evidence_conflict",
+        "safety"
+      ],
+      "properties": {
+        "ambiguity": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "missing_evidence": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "capability_limit": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "evidence_conflict": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "safety": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+      },
+      "additionalProperties": false
+    },
+    "primary_source": {
+      "type": "string",
+      "enum": ["ambiguity", "missing_evidence", "capability_limit", "evidence_conflict", "safety"]
+    },
+    "secondary_source": {
+      "type": ["string", "null"],
+      "enum": ["ambiguity", "missing_evidence", "capability_limit", "evidence_conflict", "safety", null]
+    },
+    "remediability": {
+      "type": "string",
+      "enum": ["user_clarification", "retrieval", "tool", "human", "none"]
+    },
+    "selected_action": {
+      "type": "string",
+      "enum": ["ANSWER", "CLARIFY", "RETRIEVE", "TOOL", "DELIBERATE", "ABSTAIN", "ESCALATE"]
+    },
+    "post_answer_confidence": {
+      "type": ["number", "null"],
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "confidence_band": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "confidence_target": {
+      "type": "string",
+      "enum": ["answer", "direct_answer_suitability", "action_suitability"]
+    },
+    "recommended_next_step": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 280
+    }
+  },
+  "patternProperties": {
+    "^x_": {}
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": { "selected_action": { "const": "ANSWER" } },
+        "required": ["selected_action"]
+      },
+      "then": {
+        "required": ["post_answer_confidence", "confidence_target"],
+        "properties": {
+          "post_answer_confidence": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+          "confidence_target": { "const": "answer" }
+        }
+      }
+    }
+  ]
+}

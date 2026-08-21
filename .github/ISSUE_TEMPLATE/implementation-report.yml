@@ -1,0 +1,62 @@
+name: Implementation report
+description: Report compatibility results from an independent MARC implementation.
+title: "[Implementation] "
+labels: ["implementation"]
+body:
+  - type: markdown
+    attributes:
+      value: Thank you for contributing independent implementation evidence.
+  - type: input
+    id: project
+    attributes:
+      label: "Project:"
+    validations:
+      required: true
+  - type: textarea
+    id: implementation
+    attributes:
+      label: "Implementation:"
+      description: Describe the validator, library, controller, or integration.
+    validations:
+      required: true
+  - type: input
+    id: language
+    attributes:
+      label: "Language:"
+    validations:
+      required: true
+  - type: dropdown
+    id: core
+    attributes:
+      label: "MARC-Core supported:"
+      options: ["Yes", "Partial", "No"]
+    validations:
+      required: true
+  - type: dropdown
+    id: disclosure
+    attributes:
+      label: "MARC-Disclosure supported:"
+      options: ["Yes", "Partial", "No"]
+    validations:
+      required: true
+  - type: textarea
+    id: vectors
+    attributes:
+      label: "Interop vectors passed:"
+      description: Provide a count and identify any failed vector names.
+    validations:
+      required: true
+  - type: textarea
+    id: deviations
+    attributes:
+      label: "Known deviations:"
+      description: State none when no deviations are known.
+    validations:
+      required: true
+  - type: input
+    id: revision
+    attributes:
+      label: "Repository / commit:"
+      description: Link to public source or provide a stable revision identifier.
+    validations:
+      required: true
